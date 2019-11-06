@@ -13,6 +13,7 @@ public class ProjektZpoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjektZpoApplication.class, args);
+
 	}
 
 }

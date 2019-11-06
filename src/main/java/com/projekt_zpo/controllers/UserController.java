@@ -21,13 +21,15 @@ public class UserController {
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    
-    @GetMapping("/signup")
+
+    public String username = "eggboy";
+
+    @GetMapping("/login")
     public String showSignUpForm(User user) {
         return "add-user";
     }
     
-    @PostMapping("/adduser")
+    @PostMapping("/messages")
     public String addUser(@Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "add-user";

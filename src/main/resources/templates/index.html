@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Cebulx</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
+
 <body>
- <p>Test Message</p>
+    <div id="header">
+        <ul>
+            <li><a th:href="@{/list}">Ogłoszenia</a></li>
+            <!--po wejściu w to pojawia się lista kategorii-->
+            <li><a th:href="@{/messages}">Wiadomości</a></li>
+            <!--jeśli zalogowany przechodzi do skrzynki, jeśli nie, przechodzi do logowania-->
+            <li><a th:href="@{/login}">Logowanie</a></li>
+            <!--przechodzi do logowania-->
+        </ul>
+        <div id="username" th:text="egg"></div>
+    </div>
+    <p>Test Message</p>
+
 </body>
+
 </html>
