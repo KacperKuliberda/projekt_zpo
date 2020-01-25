@@ -78,8 +78,8 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    @Override
+    /*@Override
     public String toString(){
         return "UserFromDb{"+"FirstName:'"+ firstName +"'}";
-    }
+    }*/
 }

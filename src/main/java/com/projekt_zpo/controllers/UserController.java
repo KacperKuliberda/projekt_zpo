@@ -2,6 +2,7 @@ package com.projekt_zpo.controllers;
 
 import com.projekt_zpo.entities.User;
 import com.projekt_zpo.repositories.UserRepository;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,28 +68,48 @@ public class UserController {
     }
 */
 
-    @GetMapping("/usertest")
-    public User getUser() {
-        User user = userRepository.findByEmail("kackul000@utp.edu.pl");
-        System.out.println(user);
+    @PostMapping(value = "/get-user", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public User getUser(String email) {
+        //System.out.println(email);
+        User user = userRepository.findByEmail(email);
+        System.out.println("GET USER: " + user);
         return user;
     }
 
     @PostMapping(value = "/create-user", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     void newUser(User newUser) {
-        // System.out.println(newUser.getEmail());
         //System.out.println(newUser.getLastName());
+        //System.out.println(newUser.getEmail());
+        //System.out.println(getUser(newUser.getEmail()).getEmail());
         if (newUser.getPassword().length() < 8) { //TODO ustalić dł hasła, podać info w formularzu tworzenia
             System.out.println("Password too Short");
             //TODO komunikat na ekranie
         } else if (!EmailValidator.getInstance().isValid(newUser.getEmail())) {
             System.out.println("Bad Email");
             //TODO komunikat na ekranie
+        } else if (getUser(newUser.getEmail()) != null) {
+            System.out.println(newUser.getEmail());
+            System.out.println("Account with this Email already exists.");
+            //TODO komunikat na ekranie
         } else {
             newUser.setFirstName(StringUtils.capitalize(newUser.getFirstName()));
             newUser.setLastName(StringUtils.capitalize(newUser.getLastName()));
             userRepository.save(newUser);
         }
+    }
+
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    void login(User user) {
+        User attempt = user;
+        User validateAgainst = getUser(user.getEmail());
+        //System.out.println(attempt.getEmail() + attempt.getPassword());
+        //System.out.println(validateAgainst.getEmail() + validateAgainst.getPassword());
+        if (attempt.getEmail().equals(validateAgainst.getEmail())) {
+            if (attempt.getPassword().equals(validateAgainst.getPassword()) ) {
+                System.out.println(attempt.getEmail() + " logged in with password " + attempt.getPassword());
+            }
+        }
+
     }
     /*public User addUser(@RequestBody User user)
     {
