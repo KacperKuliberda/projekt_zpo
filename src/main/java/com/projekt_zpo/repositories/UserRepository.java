@@ -1,14 +1,15 @@
 package com.projekt_zpo.repositories;
 
 import com.projekt_zpo.entities.User;
+import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.query.Param;
+//import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
-@Repository
-public interface UserRepository extends CrudRepository<User, Long> {
-    
-    List<User> findByName(String name);
-    
+//@Repository
+public interface UserRepository extends CrudRepository<User, Integer> {
+
+    @Query("Select a from user where a.email=:email")
+    User findByEmail(@Param("email") String email);
 }
