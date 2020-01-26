@@ -111,8 +111,6 @@ public class Item {
     public Item() {
     }
 
-    ;
-
     public Item(Integer userId, String name, String description, Integer price, Boolean isNegotiable, String photoUrl, Integer categoryId) {
 
         this.userId = userId;

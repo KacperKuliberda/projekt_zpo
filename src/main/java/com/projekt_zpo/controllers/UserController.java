@@ -73,6 +73,14 @@ public class UserController {
         return user;
     }
 
+    @PostMapping(value = "/get-user-id", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public User getUser(Integer id) {
+        //System.out.println(email);
+        User user = userRepository.findUserById(id);
+        //System.out.println("GET USER: " + user);
+        return user;
+    }
+
     @RequestMapping ( method = RequestMethod.POST, value = "/create-user", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @ResponseBody
     ResponseEntity newUser(User newUser) {

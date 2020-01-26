@@ -13,7 +13,7 @@ public interface ItemRepository extends CrudRepository<Item,Integer> {
     @Override
     List<Item> findAll();
 
-    List<Item> findByCategoryId(@Param("categoryId") String name);
+    List<Item> findByCategoryId(@Param("categoryId") Integer categoryId);
 
-
+    Item findItemById(@Param("itemId") Integer id);
 }
