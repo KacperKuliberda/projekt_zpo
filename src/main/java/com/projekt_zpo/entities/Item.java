@@ -115,14 +115,14 @@ public class Item {
 
     public Item(Integer userId, String name, String description, Integer price, Boolean isNegotiable, String photoUrl, Integer categoryId) {
 
-        this.userId=userId;
-        this.name=name;
-        this.description=description;
-        this.price=price;
-        this.isNegotiable=isNegotiable;
-        this.noOfVisits=0;
-        this.photoUrl=photoUrl;
-        this.categoryId=categoryId;
+        this.userId = userId;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.isNegotiable = isNegotiable;
+        this.noOfVisits = 0;
+        this.photoUrl = photoUrl;
+        this.categoryId = categoryId;
         //this.addedOn= LocalDateTime.now();
     }
 }
