@@ -29,6 +29,140 @@
         .active {
             background-color: #4CAF50;
         }
+
+        *, *:before, *:after {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: #384047;
+        }
+
+        form {
+            max-width: 300px;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background: #f4f7f8;
+            border-radius: 8px;
+        }
+
+        h1 {
+            margin: 0 0 30px 0;
+            text-align: center;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="date"],
+        input[type="datetime"],
+        input[type="email"],
+        input[type="number"],
+        input[type="search"],
+        input[type="tel"],
+        input[type="time"],
+        input[type="url"],
+        textarea,
+        select {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            font-size: 16px;
+            height: auto;
+            margin: 0;
+            outline: 0;
+            padding: 15px;
+            width: 100%;
+            background-color: #e8eeef;
+            color: #8a97a0;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+            margin-bottom: 30px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin: 0 4px 8px 0;
+        }
+
+        select {
+            padding: 6px;
+            height: 32px;
+            border-radius: 2px;
+        }
+
+        button {
+            padding: 19px 39px 18px 39px;
+            color: #FFF;
+            background-color: #4bc970;
+            font-size: 18px;
+            text-align: center;
+            font-style: normal;
+            border-radius: 5px;
+            width: 100%;
+            border: 1px solid #3ac162;
+            border-width: 1px 1px 3px;
+            box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
+            margin-bottom: 10px;
+        }
+
+        fieldset {
+            margin-bottom: 30px;
+            border: none;
+        }
+
+        legend {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        label.light {
+            font-weight: 300;
+            display: inline;
+        }
+
+        .number {
+            background-color: #5fcf80;
+            color: #fff;
+            height: 30px;
+            width: 30px;
+            display: inline-block;
+            font-size: 0.8em;
+            margin-right: 4px;
+            line-height: 30px;
+            text-align: center;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+            border-radius: 100%;
+        }
+
+        @media screen and (min-width: 480px) {
+
+            form {
+                max-width: 480px;
+            }
+
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
     </style>
 </head>
 <body>
@@ -38,7 +172,7 @@
     <li><a th:href="@{/shop}">Shop</a></li>
     <li><a th:href="@{/user_page(action='account_info')}">Account info</a></li>
     <li><a th:href="@{/user_page(action='products')}">My products</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a th:href="@{/user_page(action='add_product')}">My products</a></li>
     <li style="float:right"><a class="active" th:href="@{/user_page(action='logout')}">Logout</a></li>
 </ul>
 
@@ -53,16 +187,94 @@
         products
     </p>
 
-    <tr th:each="item: ${items}" style="border-bottom: 2px solid black">
-        <td><a th:href="@{/productPage(productID=${item.getId()})}">
-            <img  th:if="${item.getPhotoUrl()==null}" style="max-height: 100px; max-width: 100px"
-                  src="https://www.wykop.pl/cdn/c3201142/comment_wCdi9eYgQj2JmRVwSfZnkSNw9RaJKDxV,w400.jpg">
-            <img th:unless="${item.getPhotoUrl()==null}" style="max-height: 100px; max-width: 100px"
-                 th:src="${item.getPhotoUrl()}">
-        </a></td>
-        <td th:text="${item.getName()}" ><a th:href="@{/productPage(productID=${item.getId()})}"/></td>
-        <td th:text="${item.getPrice()}"></td>
-    </tr>
+
+    <table style="width:100%">
+        <tr>
+            <th width="100px" >Pic</th>
+            <th >Name</th>
+            <th >Price</th>
+            <th>Delete</th>
+        </tr >
+        <tr th:each="item: ${items}" style="border-bottom: 2px solid black">
+            <td><a th:href="@{/productPage(productID=${item.getId()})}">
+                <img  th:if="${item.getPhotoUrl()==null}" style="max-height: 100px; max-width: 100px"
+                      src="https://www.wykop.pl/cdn/c3201142/comment_wCdi9eYgQj2JmRVwSfZnkSNw9RaJKDxV,w400.jpg">
+                <img th:unless="${item.getPhotoUrl()==null}" style="max-height: 100px; max-width: 100px"
+                     th:src="${item.getPhotoUrl()}">
+            </a></td>
+            <td th:text="${item.getName()}" ><a th:href="@{/productPage(productID=${item.getId()})}"/></td>
+            <td th:text="${item.getPrice()}"></td>
+            <td ><a th:href="@{/delete_item(itemId=${item.getId()})}" ><img style="max-height:  50px"
+                                                                               src="https://pngimage.net/wp-content/uploads/2018/05/delete-png.png"/></a> </td>
+        </tr>
+
+    </table>
+
+
+</div>
+
+<div th:if="${action.equals('add_product')}">
+
+    <form th:action="@{/add_product}" th:object="${item}" method="post">
+
+        <h1>Add item:</h1>
+
+        <fieldset>
+
+
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}" >
+
+            <label for="description">Description:</label>
+            <input type="text" id="description" th:field="*{description}" >
+
+            <label for="price">Price:</label>
+            <input type="number" id="price" th:field="*{price}" >
+
+            <label for="isNegotiable">Is Negotiable?:</label>
+            <select id="isNegotiable" th:field="*{negotiable}" >
+                <option th:value="false">No</option>
+                <option th:value="true">Yes</option>
+            </select>
+
+            <label for="photoUrl">photoUrl:</label>
+            <input type="text" id="photoUrl" th:value="true" th:field="*{photoUrl}" >
+
+            <label for="categoryId">categoryId:</label>
+            <select id="categoryId" th:field="*{categoryId}" >
+                <option th:each="category: ${categories}" th:value="${category.getId()}" ><p th:text="${category.getName()}"></p></option>
+            </select>
+
+      <!--      <input type="hidden" th:field="*{addedOn}"  th:value="${#dates.format(#dates.createNow(),'YYYY/MM/dd HH:mm')}" >-->
+
+
+
+        </fieldset>
+        <button type="submit">Add</button>
+
+<!--@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column
+    private Integer userId;
+    @Column
+    private String name;
+    @Column
+    private String description;
+    @Column
+    private Integer price;
+    @Column
+    private Boolean isNegotiable;
+    @Column
+    private Integer noOfVisits;
+    @Column
+    private String photoUrl;
+    @Column
+    private Integer categoryId;
+    @Column
+    private String addedOn;-->
+    </form>
+
 </div>
 
 
