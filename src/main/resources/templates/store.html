@@ -155,7 +155,7 @@
 <div class="side_menu" >
     <p>Categories</p>
     <div class="vertical-menu" align="left" th:each="category: ${categories}">
-        <a  th:href="@{/shop(filterCategory=${category.getId()})}"  th:text="${category.getName()}"></a>
+        <a  th:href="@{/shop(filterCategory=${category.getId()} ,keyword=${keyword})}"  th:text="${category.getName()}"></a>
     </div>
     <p>Sorting By:</p>
     <p  >Keyword: <a class="active" th:if="${keyword!=''}"  th:text="${keyword}"></a></p></br></br>
@@ -169,7 +169,7 @@
             <th >Name</th>
             <th >Price</th>
         </tr >
-        <tr th:each="item: ${items}"  th:href="@{/productPage(productID=${item.getId()})}" style="border-bottom: 2px solid black">
+        <tr th:each="item: ${items}" style="border-bottom: 2px solid black">
             <td><a th:href="@{/productPage(productID=${item.getId()})}">
                 <img  th:if="${item.getPhotoUrl()==null}" style="max-height: 100px; max-width: 100px"
                      src="https://www.wykop.pl/cdn/c3201142/comment_wCdi9eYgQj2JmRVwSfZnkSNw9RaJKDxV,w400.jpg">
