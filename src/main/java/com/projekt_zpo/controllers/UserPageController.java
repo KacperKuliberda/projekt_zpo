@@ -102,8 +102,8 @@ public class UserPageController {
 
 
 
-        if (item.getName().length() < 5||item.getName()==null) {
-            System.out.println("Password too Short");
+        if (item.getName().length() < 3||item.getName()==null) {
+            System.out.println("");
 
         } else if (item.getDescription().length()<5) {
             System.out.println("Bad Email");

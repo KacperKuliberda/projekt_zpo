@@ -172,7 +172,7 @@
     <li><a th:href="@{/shop}">Shop</a></li>
     <li><a th:href="@{/user_page(action='account_info')}">Account info</a></li>
     <li><a th:href="@{/user_page(action='products')}">My products</a></li>
-    <li><a th:href="@{/user_page(action='add_product')}">My products</a></li>
+    <li><a th:href="@{/user_page(action='add_product')}">Add item:</a></li>
     <li style="float:right"><a class="active" th:href="@{/user_page(action='logout')}">Logout</a></li>
 </ul>
 
@@ -239,7 +239,7 @@
             </select>
 
             <label for="photoUrl">photoUrl:</label>
-            <input type="text" id="photoUrl" th:value="true" th:field="*{photoUrl}" >
+            <input type="url" id="photoUrl" th:value="true" th:field="*{photoUrl}" >
 
             <label for="categoryId">categoryId:</label>
             <select id="categoryId" th:field="*{categoryId}" >
