@@ -1,6 +1,8 @@
 package com.projekt_zpo.controllers;
 
+import com.projekt_zpo.entities.Item;
 import com.projekt_zpo.entities.User;
+import com.projekt_zpo.repositories.ItemRepository;
 import com.projekt_zpo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,15 +14,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
 public class UserPageController {
 
     private final UserRepository userRepository;
+    private final ItemRepository itemRepository;
 
     @Autowired
-    public UserPageController(UserRepository userRepository) {
+    public UserPageController(UserRepository userRepository,ItemRepository itemRepository) {
         this.userRepository = userRepository;
+        this.itemRepository = itemRepository;
     }
 
 
@@ -37,6 +42,8 @@ public class UserPageController {
         User user = userRepository.findByEmail(username);
 
         if(action.equals("products")){
+            List<Item> items = itemRepository.findAllByUserId(user.getId());
+            model.addAttribute("items",items);
 
         }else if(action.equals("account_info")){
 

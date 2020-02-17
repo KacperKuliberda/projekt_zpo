@@ -36,29 +36,19 @@ public class ShopController {
                            @RequestParam(value = "filterCategory",required = false)Integer filterCategory){
 
         List<Category> categories = categoryRepository.findAll();
-        List<Item> items = itemRepository.findAll();
-        /* z jakiegoś powodu to:
-        * items.stream()
-                    .filter(x->x.getName().contains(keyword));
-            nie działa więc wyszedł taki cancer jak widzisz
-        *  */
+
+
         if((filterCategory!=null && (keyword != null && !keyword.isEmpty()))){
-            List<Item> filtered_items = items.stream()
-                    .filter(x->x.getName().contains(keyword))
-                    .filter(x->x.getCategoryId().equals(filterCategory))
-                    .collect(Collectors.toList());
+            List<Item> filtered_items = itemRepository.findAllByDescriptionContainsOrNameContainsAndCategoryId(keyword,keyword,filterCategory);
             model.addAttribute("items",filtered_items);
         }else if(filterCategory!=null){
-            List<Item> filtered_items = items.stream()
-                    .filter(x->x.getCategoryId().equals(filterCategory))
-                    .collect(Collectors.toList());
+            List<Item> filtered_items = itemRepository.findByCategoryId(filterCategory);
             model.addAttribute("items",filtered_items);
         }else if(keyword != null && !keyword.isEmpty()){
-            List<Item> filtered_items = items.stream()
-                    .filter(x->x.getName().contains(keyword))
-                    .collect(Collectors.toList());
+            List<Item> filtered_items = itemRepository.findAllByDescriptionContainsOrNameContains(keyword,keyword);
             model.addAttribute("items",filtered_items);
         }else {
+            List<Item> items = itemRepository.findAll();
             model.addAttribute("items",items);
         }
 
