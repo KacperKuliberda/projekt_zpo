@@ -107,7 +107,7 @@
              th:src="${item.getPhotoUrl()}">
         <div class="item-desc"><p  th:text="${item.getDescription()}"></p></div>
     </div>
-    <div class="item-price"><b>PRICE</b><p  th:text="${item.getPrice()}"></p> <b>IS NEGOTIABLE:</b> <p th:text="${item.getNegotiable()}"></p></div>
+    <div class="item-price"><b>PRICE</b><p  th:text="${item.getPrice()}"></p> <b>IS NEGOTIABLE:</b> <p th:text="${item.getNegotiable()}"></p><b>PHONE NUMBER</b><p th:text="${user.getPhoneNumber()}"</div>
 </div>
 </body>
 </html>
