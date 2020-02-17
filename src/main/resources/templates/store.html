@@ -1,187 +1,219 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head >
+<head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="utf-8">
     <style>
 
         body {
-            font-family: Arial;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        form.example input[type=text] {
-
-            padding: 10px;
-            font-size: 17px;
-            border: 1px solid grey;
-            float: left;
-            width: 80%;
-            background: #f1f1f1;
-            height: 50px;
-        }
-
-        form.example button {
-            float: left;
-            width: 20%;
-            padding: 10px;
-            background: #4CAF50;
-            color: white;
-            font-size: 17px;
-            border: 1px solid grey;
-            border-left: none;
-            cursor: pointer;
-            height: 50px;
-        }
-
-        form.example button:hover {
-            background: #276327;
-        }
-
-        form.example::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-        ul {
-            list-style-type: none;
-            margin: 0;
             padding: 0;
-            overflow: hidden;
-            background-color: #333;
-        }
-
-        li {
-            float: left;
-        }
-
-        li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        li a:hover:not(.active) {
-            background-color: #111;
-        }
-
-        .active {
-            background-color: #4CAF50;
-        }
-
-        .side_menu{
-            border-top:  3px solid black;
-            border-right: 3px solid black;
-            float: left;
-            width: 20%;
+            margin: 0;
+            border: 0;
             height: 100%;
-            background: #8a97a0;
+            background-color: #2e2934;
         }
 
-        .products{
-            float: right;
-            width: 80%;
-            height: 100%;
-            background: #f1f1f1;
-        }
-
-        .everything{
-
-        }
-
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        td, th {
-            border: 1px solid #dddddd;
-            text-align: left;
+        .header {
             padding: 8px;
+            background-color: #2e2934;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
         }
 
-        tr:nth-child(even) {
-            background-color: #dddddd;
+        .login-button {
+            min-width: 80px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffe77f;
+            background-color: #ad0029;
+            text-decoration: none;
+            text-transform: uppercase;
         }
 
-        .vertical-menu {
-            width: 100%;
-
+        .login-button p {
+            text-align: center;
         }
 
-        .vertical-menu a {
-            background-color: #eee;
-            color: black;
-            display: block;
-            padding: 12px;
+        .search-bar {
+            width: 60%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-bar input {
+            width: 70%;
+            height: 30px;
+            padding: 0;
+            border: none;
+        }
+
+        .search-bar button {
+            width: 32px;
+            height: 32px;
+            padding: 0;
+        }
+
+        .side_menu {
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .side_menu li {
+
+            color: #ffe77f;
+            margin: 0;
+            height: 50px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        a:active, a:link, a:hover, a:visited {
+            color: #ffe77f;
             text-decoration: none;
         }
 
-        .vertical-menu a:hover {
-            background-color: #ccc;
+        li, ul {
+            padding: 0;
+            margin: 0;
+            border: 0;
+            list-style-type: none;
         }
 
-        .vertical-menu a.active {
-            background-color: #4CAF50;
-            color: white;
+        .side-menu-header {
+            background-color: #570014;
+        }
+
+        .side_menu-item {
+            background-color: #ad0029;
+        }
+
+        .side_menu-item:hover {
+            background-color: #ff003c;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+        }
+
+
+        .products {
+            flex-basis: 100%;
+            min-width: 400px;
+            max-width: 1200px;
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+        }
+
+        .products-header, .products-item, .products-item a {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            flex-basis: 100%;
+        }
+
+        .products-item {
+            margin-bottom: 10px;
+            margin-top: 10px;
+            background-color: #ad0029;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        td {
+            border: 1px solid black;
+        }
+
+        .products-header {
+            background-color: #570014;
+            text-transform: uppercase;
+            color: #ffe77f;
+            height: 50px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding-right: 50px;
+            padding-left:  50px;
+        }
+
+        .item-price {
+            width: 100px;
+            padding-right: 50px;
+        }
+
+        .item-description {
+        }
+
+        .item-photo {
+            padding-left: 50px;
         }
     </style>
 </head>
 <body>
+<div class="header">
+    <img src="https://i.imgur.com/3tZ317h.png" style="height: 50px;">
 
-<ul style="align-content: center">
-    <li><img src="https://ih1.redbubble.net/image.1048533920.6849/flat,1000x1000,075,f.u2.jpg" style="height: 50px;"></li>
 
-   <li style="width: 40%; " >
-    <form class="example" action="#" th:action="@{/shop}"  style="margin:auto; max-width:100%; display: block " >
+    <form class="example search-bar" action="#" th:action="@{/shop}">
         <input type="text" placeholder="Search..." th:name="keyword">
         <button type="submit"><i class="fa fa-search"></i></button>
     </form>
-   </li>
-
-    <li style="float:right" ><a class="active" th:if="${user!=null}"  th:href="@{/user_page(action='account_info')}" th:text="${user}"></a></li>
-    <li style="float:right" ><a class="active" th:if="${user==null}"  th:href="@{/login2}" >Login</a></li>
-</ul>
-
-<div class="everything">
 
 
-<div class="side_menu" >
-    <p>Categories</p>
-    <div class="vertical-menu" align="left" th:each="category: ${categories}">
-        <a  th:href="@{/shop(filterCategory=${category.getId()} ,keyword=${keyword})}"  th:text="${category.getName()}"></a>
+    <a class="active login-button" th:if="${user!=null}" th:href="@{/user_page(action='account_info')}"><p th:text="${user.replaceFirst('@.*','')}"></p></a>
+    <a class="active login-button" th:if="${user==null}" th:href="@{/login2}"><p>Login</p></a>
+
+</div>
+<div class="content">
+
+    <div class="side_menu">
+        <ul>
+            <li class="side-menu-header"><p>Categories</p></li>
+            <li class="side_menu-item">
+                <a href="/shop">All Items</a>
+            </li>
+            <li class="side_menu-item" th:each="category: ${categories}">
+                <a th:href="@{/shop(filterCategory=${category.getId()} ,keyword=${keyword})}" th:text="${category.getName()}"></a>
+            </li>
+            <!--  <li>Sorting By:</li>
+              <li>Keyword: <a class="active" th:if="${keyword!=''}" th:text="${keyword}"></a></li>
+              <li>Category: <a class="active" th:if="${filterCategory!=null}" th:text="${filterCategory}"></a></li>
+              !-->
+        </ul>
     </div>
-    <p>Sorting By:</p>
-    <p  >Keyword: <a class="active" th:if="${keyword!=''}"  th:text="${keyword}"></a></p></br></br>
-    <p s >Category: <a class="active" th:if="${filterCategory!=null}"  th:text="${filterCategory}"></a></p>
-</div>
 
-<div class="products" >
-    <table style="width:100%">
-        <tr>
-            <th width="100px" >Pic</th>
-            <th >Name</th>
-            <th >Price</th>
-        </tr >
-        <tr th:each="item: ${items}" style="border-bottom: 2px solid black">
-            <td><a th:href="@{/productPage(productID=${item.getId()})}">
-                <img  th:if="${item.getPhotoUrl()==null}" style="max-height: 100px; max-width: 100px"
-                     src="https://www.wykop.pl/cdn/c3201142/comment_wCdi9eYgQj2JmRVwSfZnkSNw9RaJKDxV,w400.jpg">
-                <img th:unless="${item.getPhotoUrl()==null}" style="max-height: 100px; max-width: 100px"
-                     th:src="${item.getPhotoUrl()}">
-            </a></td>
-            <td th:text="${item.getName()}" ><a th:href="@{/productPage(productID=${item.getId()})}"/></td>
-            <td th:text="${item.getPrice()}"></td>
-        </tr>
+    <div class="products">
+        <div class="products-header">
+            <p class="item-photo">Pic</p>
+            <p class="item-description">Name</p>
+            <p class="item-price">Price</p>
+        </div>
+        <div class="products-item" th:each="item: ${items}">
+            <a th:href="@{/productPage(productID=${item.getId()})}">
+                <p class="item-photo">
 
-    </table>
+                    <img th:if="${item.getPhotoUrl()==null}" style="max-height: 100px; max-width: 100px"
+                         src="https://www.wykop.pl/cdn/c3201142/comment_wCdi9eYgQj2JmRVwSfZnkSNw9RaJKDxV,w400.jpg">
+                    <img th:unless="${item.getPhotoUrl()==null}" style="max-height: 100px; max-width: 100px"
+                         th:src="${item.getPhotoUrl()}">
+
+                </p>
+                <p class="item-description" th:text="${item.getName()}"><a th:href="@{/productPage(productID=${item.getId()})}"/></p>
+                <p class="item-price" th:text="${item.getPrice()}"><a th:href="@{/productPage(productID=${item.getId()})}"/></p>
+            </a>
+        </div>
+    </div>
+
 </div>
-</div>
+<div class="footer"></div>
 </body>
 </html>
