@@ -2,17 +2,111 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${item.getName()}"></title>
+    <style>
+
+        body {
+            padding: 0;
+            margin: 0;
+            border: 0;
+            height: 100%;
+            background-color: #2e2934;
+        }
+
+        .header {
+            padding: 8px;
+            background-color: #2e2934;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .login-button {
+            min-width: 80px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffe77f;
+            background-color: #ad0029;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .login-button p {
+            text-align: center;
+        }
+
+        .search-bar {
+            width: 60%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-bar input {
+            width: 70%;
+            height: 30px;
+            padding: 0;
+            border: none;
+        }
+
+        .search-bar button {
+            width: 32px;
+            height: 32px;
+            padding: 0;
+        }
+
+        .content {
+            color: #ffe77f;
+            background-color: #ad0029;
+            display: flex;
+            justify-content: space-around;
+            justify-items: center;
+            flex-direction: column;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+        .subcontent{
+            flex-direction: row;
+            display: flex;
+        }
+        .item-name, .item-price
+        {
+            text-transform: uppercase;
+            text-align: center;
+            justify-items: center;
+            justify-content: center;
+        }
+        .item-desc{
+            padding-left: 50px;
+        }
+    </style>
 </head>
+
 <body>
+<div class="header">
+    <a href="/shop"> <img src="https://i.imgur.com/3tZ317h.png" style="height: 50px;"></a>
 
-<img  th:if="${item.getPhotoUrl()==null}"
-      src="https://www.wykop.pl/cdn/c3201142/comment_wCdi9eYgQj2JmRVwSfZnkSNw9RaJKDxV,w400.jpg">
-<img th:unless="${item.getPhotoUrl()==null}"
-     th:src="${item.getPhotoUrl()}">
 
-<p th:text="${item.getName()}"></p><br>
-<p th:text="${item.getPrice()}"></p><br>
-<p th:text="${item.getDescription()}"></p><br>
+    <form class="example search-bar" action="#" th:action="@{/shop}">
+        <input type="text" placeholder="Search..." th:name="keyword">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+
+
+</div>
+
+<div class="content">
+    <div class="item-name"><b><p th:text="${item.getName()}"></p></b></div>
+    <div class="subcontent">
+        <img th:if="${item.getPhotoUrl()==null}"
+             src="https://www.wykop.pl/cdn/c3201142/comment_wCdi9eYgQj2JmRVwSfZnkSNw9RaJKDxV,w400.jpg">
+        <img th:unless="${item.getPhotoUrl()==null}"
+             th:src="${item.getPhotoUrl()}">
+        <div class="item-desc"><p  th:text="${item.getDescription()}"></p></div>
+    </div>
+    <div class="item-price"><b>PRICE</b><p  th:text="${item.getPrice()}"></p> <b>IS NEGOTIABLE:</b> <p th:text="${item.getNegotiable()}"></p></div>
+</div>
 </body>
 </html>
