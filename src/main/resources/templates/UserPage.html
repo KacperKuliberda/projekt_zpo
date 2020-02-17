@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #111;
+        }
+
+        .active {
+            background-color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+<ul>
+
+    <li><a th:href="@{/shop}">Shop</a></li>
+    <li><a th:href="@{/user_page(action='account_info')}">Account info</a></li>
+    <li><a th:href="@{/user_page(action='products')}">My products</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li style="float:right"><a class="active" th:href="@{/user_page(action='logout')}">Logout</a></li>
+</ul>
+
+<div th:if="${action.equals('account_info')}">
+    <p>
+        acc info
+    </p>
+</div>
+
+<div th:if="${action.equals('products')}">
+    <p>
+        products
+    </p>
+</div>
+
+
+
+</body>
+</html>

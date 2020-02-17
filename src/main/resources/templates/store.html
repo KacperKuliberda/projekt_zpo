@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="utf-8">
+    <style>
+
+        body {
+            font-family: Arial;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        form.example input[type=text] {
+
+            padding: 10px;
+            font-size: 17px;
+            border: 1px solid grey;
+            float: left;
+            width: 80%;
+            background: #f1f1f1;
+            height: 50px;
+        }
+
+        form.example button {
+            float: left;
+            width: 20%;
+            padding: 10px;
+            background: #4CAF50;
+            color: white;
+            font-size: 17px;
+            border: 1px solid grey;
+            border-left: none;
+            cursor: pointer;
+            height: 50px;
+        }
+
+        form.example button:hover {
+            background: #276327;
+        }
+
+        form.example::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #111;
+        }
+
+        .active {
+            background-color: #4CAF50;
+        }
+
+        .side_menu{
+            border-top:  3px solid black;
+            border-right: 3px solid black;
+            float: left;
+            width: 20%;
+            height: 100%;
+            background: #8a97a0;
+        }
+
+        .products{
+            float: right;
+            width: 80%;
+            height: 100%;
+            background: #f1f1f1;
+        }
+
+        .everything{
+
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        .vertical-menu {
+            width: 100%;
+
+        }
+
+        .vertical-menu a {
+            background-color: #eee;
+            color: black;
+            display: block;
+            padding: 12px;
+            text-decoration: none;
+        }
+
+        .vertical-menu a:hover {
+            background-color: #ccc;
+        }
+
+        .vertical-menu a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<ul style="align-content: center">
+    <li><img src="https://ih1.redbubble.net/image.1048533920.6849/flat,1000x1000,075,f.u2.jpg" style="height: 50px;"></li>
+
+   <li style="width: 40%; " >
+    <form class="example" action="#" th:action="@{/shop}"  style="margin:auto; max-width:100%; display: block " >
+        <input type="text" placeholder="Search..." th:name="keyword">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+   </li>
+
+    <li style="float:right" ><a class="active" th:if="${user!=null}"  th:href="@{/user_page(action='account_info')}" th:text="${user}"></a></li>
+    <li style="float:right" ><a class="active" th:if="${user==null}"  th:href="@{/login2}" >Login</a></li>
+</ul>
+
+<div class="everything">
+
+
+<div class="side_menu" >
+    <p>Categories</p>
+    <div class="vertical-menu" align="left" th:each="category: ${categories}">
+        <a  th:href="@{/shop(filterCategory=${category.getId()})}"  th:text="${category.getName()}"></a>
+    </div>
+    <p>Sorting By:</p>
+    <p  >Keyword: <a class="active" th:if="${keyword!=''}"  th:text="${keyword}"></a></p></br></br>
+    <p s >Category: <a class="active" th:if="${filterCategory!=null}"  th:text="${filterCategory}"></a></p>
+</div>
+
+<div class="products" >
+    <table style="width:100%">
+        <tr>
+            <th width="100px" >Pic</th>
+            <th >Name</th>
+            <th >Price</th>
+        </tr >
+        <tr th:each="item: ${items}"  th:href="@{/productPage(productID=${item.getId()})}" style="border-bottom: 2px solid black">
+            <td><a th:href="@{/productPage(productID=${item.getId()})}">
+                <img  th:if="${item.getPhotoUrl()==null}" style="max-height: 100px; max-width: 100px"
+                     src="https://www.wykop.pl/cdn/c3201142/comment_wCdi9eYgQj2JmRVwSfZnkSNw9RaJKDxV,w400.jpg">
+                <img th:unless="${item.getPhotoUrl()==null}" style="max-height: 100px; max-width: 100px"
+                     th:src="${item.getPhotoUrl()}">
+            </a></td>
+            <td th:text="${item.getName()}" ><a th:href="@{/productPage(productID=${item.getId()})}"/></td>
+            <td th:text="${item.getPrice()}"></td>
+        </tr>
+
+    </table>
+</div>
+</div>
+</body>
+</html>

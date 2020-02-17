@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<img  th:if="${item.getPhotoUrl()==null}"
+      src="https://www.wykop.pl/cdn/c3201142/comment_wCdi9eYgQj2JmRVwSfZnkSNw9RaJKDxV,w400.jpg">
+<img th:unless="${item.getPhotoUrl()==null}"
+     th:src="${item.getPhotoUrl()}">
+
+<p th:text="${item.getName()}"></p><br>
+<p th:text="${item.getPrice()}"></p><br>
+<p th:text="${item.getDescription()}"></p><br>
+</body>
+</html>
