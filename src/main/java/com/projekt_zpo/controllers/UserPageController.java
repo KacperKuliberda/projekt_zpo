@@ -102,13 +102,19 @@ public class UserPageController {
 
 
 
-        if (item.getName().length() < 3||item.getName()==null) {
-            System.out.println("");
 
-        } else if (item.getDescription().length()<5) {
-            System.out.println("Bad Email");
+        if (item.getName().isEmpty() || item.getName()==null) {
 
-        }  else {
+        } else if (item.getDescription().isEmpty() || item.getDescription()==null) {
+
+        }
+        else if (item.getCategoryId()==null) {
+
+        }else if (item.getPrice()==null) {
+
+        } else if (item.getPhotoUrl().isEmpty()||item.getPhotoUrl()==null) {
+
+        }else {
             itemRepository.save(item);
 
         }

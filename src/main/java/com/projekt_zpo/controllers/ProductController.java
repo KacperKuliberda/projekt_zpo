@@ -35,6 +35,7 @@ public class ProductController {
 
         model.addAttribute("user",user);
         model.addAttribute("item", item);
+
         return "product";
     }
 }
