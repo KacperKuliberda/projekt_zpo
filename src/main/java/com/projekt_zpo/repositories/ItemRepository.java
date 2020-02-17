@@ -22,13 +22,14 @@ public interface ItemRepository extends CrudRepository<Item,Integer> {
 
     List<Item> findAllByDescriptionContainsOrNameContains(String keyword, String keyword2);
 
-    List<Item> findAllByDescriptionContainsOrNameContainsAndCategoryId(@Param("keyword") String keyword,
+    List<Item> findAllByDescriptionContainsAndCategoryIdOrNameContainsAndCategoryId(@Param("keyword") String keyword,
+                                                                       @Param("categoryId")Integer categoryId,
                                                                        @Param("keyword2") String keyword2,
-                                                                       @Param("categoryId")Integer categoryId);
-   /*
-    @Query("SELECT i.* FROM item WHERE i.category_id = :categoryId AND (i.name LIKE %:keyword% OR i.description LIKE %:keyword%)")
-    List<Item> findAllByCategoryIdAndDescriptionContainsOrNameContains(@Param("categoryId")Integer categoryId,@Param("keyword") String keyword);
-*/
+                                                                       @Param("categoryId2")Integer categoryId2);
+
+/*    @Query("SELECT * FROM item i WHERE i.category_id = :categoryId AND (i.name LIKE %:keyword% OR i.description LIKE %:keyword%)")
+    List<Item> findAllByNameContainsr(@Param("categoryId")Integer categoryId,@Param("keyword") String keyword);*/
+
 
 
 }
