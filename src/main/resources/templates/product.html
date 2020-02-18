@@ -102,7 +102,7 @@
     <div class="item-name"><b><p th:text="${item.getName()}"></p></b></div>
     <div class="subcontent">
         <img th:if="${item.getPhotoUrl()==null}"
-             src="https://www.wykop.pl/cdn/c3201142/comment_wCdi9eYgQj2JmRVwSfZnkSNw9RaJKDxV,w400.jpg">
+             src="http://icon-library.com/images/null-icon/null-icon-3.jpg">
         <img th:unless="${item.getPhotoUrl()==null}"
              th:src="${item.getPhotoUrl()}">
         <div class="item-desc"><p  th:text="${item.getDescription()}"></p></div>

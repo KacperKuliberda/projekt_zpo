@@ -181,7 +181,7 @@
         <tr th:each="item: ${items}" style="border-bottom: 2px solid black">
             <td><a th:href="@{/productPage(productID=${item.getId()})}">
                 <img  th:if="${item.getPhotoUrl()==null}" style="max-height: 100px; max-width: 100px"
-                      src="https://www.wykop.pl/cdn/c3201142/comment_wCdi9eYgQj2JmRVwSfZnkSNw9RaJKDxV,w400.jpg">
+                      src="http://icon-library.com/images/null-icon/null-icon-3.jpg">
                 <img th:unless="${item.getPhotoUrl()==null}" style="max-height: 100px; max-width: 100px"
                      th:src="${item.getPhotoUrl()}">
             </a></td>
