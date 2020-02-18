@@ -7,28 +7,27 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #333;
+            background-color: #570014;
         }
 
         li {
             float: left;
+            background-color: #ad0029;
         }
+
 
         li a {
             display: block;
-            color: white;
+            color: #ffe77f;
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
         }
 
-        li a:hover:not(.active) {
-            background-color: #111;
+        li a:hover {
+            background-color: #ff003c;
         }
 
-        .active {
-            background-color: #4CAF50;
-        }
 
         *, *:before, *:after {
             -moz-box-sizing: border-box;
@@ -38,14 +37,15 @@
 
         body {
             font-family: 'Nunito', sans-serif;
-            color: #384047;
+            color: #ffe77f;
+            background-color: #2e2934;
         }
 
         form {
             max-width: 300px;
             margin: 10px auto;
             padding: 10px 20px;
-            background: #f4f7f8;
+            background: #570014;
             border-radius: 8px;
         }
 
@@ -66,7 +66,7 @@
         input[type="url"],
         textarea,
         select {
-            background: rgba(255,255,255,0.1);
+            background-color: #e8eeef;
             border: none;
             font-size: 16px;
             height: auto;
@@ -74,9 +74,6 @@
             outline: 0;
             padding: 15px;
             width: 100%;
-            background-color: #e8eeef;
-            color: #8a97a0;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
             margin-bottom: 30px;
         }
 
@@ -93,16 +90,15 @@
 
         button {
             padding: 19px 39px 18px 39px;
-            color: #FFF;
-            background-color: #4bc970;
+            color: #ffe77f;
+            background-color: #ad0029;
             font-size: 18px;
             text-align: center;
             font-style: normal;
             border-radius: 5px;
             width: 100%;
-            border: 1px solid #3ac162;
+            border: 1px solid #ad0029;
             border-width: 1px 1px 3px;
-            box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
             margin-bottom: 10px;
         }
 
@@ -126,19 +122,6 @@
             display: inline;
         }
 
-        .number {
-            background-color: #5fcf80;
-            color: #fff;
-            height: 30px;
-            width: 30px;
-            display: inline-block;
-            font-size: 0.8em;
-            margin-right: 4px;
-            line-height: 30px;
-            text-align: center;
-            text-shadow: 0 1px 0 rgba(255,255,255,0.2);
-            border-radius: 100%;
-        }
 
         @media screen and (min-width: 480px) {
 
@@ -155,13 +138,13 @@
         }
 
         td, th {
-            border: 1px solid #dddddd;
+            border: 1px solid #ad0029;
             text-align: left;
             padding: 8px;
         }
 
         tr:nth-child(even) {
-            background-color: #dddddd;
+            background-color: #ad0029;
         }
     </style>
 </head>
@@ -172,19 +155,19 @@
     <li><a th:href="@{/shop}">Shop</a></li>
     <li><a th:href="@{/user_page(action='account_info')}">Account info</a></li>
     <li><a th:href="@{/user_page(action='products')}">My products</a></li>
-    <li><a th:href="@{/user_page(action='add_product')}">Add item:</a></li>
+    <li><a th:href="@{/user_page(action='add_product')}">Add item</a></li>
     <li style="float:right"><a class="active" th:href="@{/user_page(action='logout')}">Logout</a></li>
 </ul>
 
 <div th:if="${action.equals('account_info')}">
     <p>
-        acc info
+        Placeholder user account information.
     </p>
 </div>
 
 <div th:if="${action.equals('products')}">
     <p>
-        products
+        My products:
     </p>
 
 
