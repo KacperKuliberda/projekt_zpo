@@ -39,7 +39,7 @@ public class ShopController {
 
 
         if((filterCategory!=null && (keyword != null && !keyword.isEmpty()))){
-            List<Item> filtered_items = itemRepository.findAllByDescriptionContainsOrNameContainsAndCategoryId(keyword,keyword,filterCategory);
+            List<Item> filtered_items = itemRepository.findAllByDescriptionContainsAndCategoryIdOrNameContainsAndCategoryId(keyword,filterCategory,keyword,filterCategory);
             model.addAttribute("items",filtered_items);
         }else if(filterCategory!=null){
             List<Item> filtered_items = itemRepository.findByCategoryId(filterCategory);
